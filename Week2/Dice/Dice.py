@@ -10,7 +10,7 @@ window_width=500
 win_width=int(window_width)
 win_height=int(window_width/2)
 
-def prog():
+def Setup():
     root = Tk()
     root.geometry(f"{win_width}x{win_height}")  
     root.config(background="black") 
