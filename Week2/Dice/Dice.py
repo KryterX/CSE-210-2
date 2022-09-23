@@ -1,11 +1,6 @@
-
-import random
 import  tkinter as Tk
 from tkinter import *
-
-import time
 from turtle import  window_width
-import Game
 import Player
 d = {}
 d["score"] = 0
