@@ -1,13 +1,9 @@
-from cProfile import label
-from multiprocessing.connection import wait
 import random
 import  tkinter as Tk
 from tkinter import *
-from tkinter import messagebox
-import time
-
+import Player
 from turtle import  window_width
-
+import Game
 d = {}
 d["score"] = 300
 window_width=450
@@ -26,9 +22,9 @@ def prog():
     d["pic{0}".format(0)].config(highlightbackground="blue",highlightcolor="blue")
     d["pic{0}".format(0)].grid(row=1, column=1,rowspan=2,sticky="NS")
     
-    d["but{0}".format(0)]= Button(root,text="🢁",padx=20,command=lambda highlow="high": draw(highlow,root))
+    d["but{0}".format(0)]= Button(root,text="🢁",padx=20,command=lambda highlow="high": Player.draw(highlow,root,d))
     d["but{0}".format(0)].grid(row=1,column=2,sticky="NS")
-    d["but{0}".format(1)] = Button(root,text="🢃",padx=20,command=lambda highlow="low": draw(highlow,root))
+    d["but{0}".format(1)] = Button(root,text="🢃",padx=20,command=lambda highlow="low": Player.draw(highlow,root,d))
     d["but{0}".format(1)].grid(row=2,column=2,sticky="NS")
     
     d["pic{0}".format(2)] = Label(root,text="",bd=20,highlightthickness=2,width=5)
@@ -46,73 +42,17 @@ def prog():
         Grid.columnconfigure(root,i,weight=1)
         
     root.update()
-    pause(1)
+    Game.pause(1)
     d["pic4"].config(text="Will the next card be\n higher or lower?")    
     
     root.mainloop()
-    
-class cards():
-    rand=1
 
-def draw(highlow,root):
-    rand=random.randint(1,13)
-    first_card= d["pic0"].cget("text")
-    
-    while rand == int(first_card):
-        rand=random.randint(1,13)
-        
-    d["pic2"].config(text=f"{rand}")
-    if highlow=="high":
-        if int(d["pic2"].cget("text")) > int(d["pic0"].cget("text")):
-            d["pic4"].config(text="correct")
-            d["score"] +=100
-            score=int(d["score"])
-            d["pic3"].config(text=f"score = {score}")
-        else:
-            d["pic4"].config(text="incorrect")
-            d["score"]-=75
-            score=int(d["score"])
-            d["pic3"].config(text=f"score = {score}")
-    else:
-        if int(d["pic2"].cget("text")) < int(d["pic0"].cget("text")):
-            d["pic4"].config(text="correct")
-            d["score"]+=100
-            score=int(d["score"])
-            d["pic3"].config(text=f"score = {score}")
-        else:
-            d["pic4"].config(text="incorrect")
-            d["score"]-=75
-            score=int(d["score"])
-            d["pic3"].config(text=f"score = {score}")
-            
-    if d["score"] >=1000:
-        d["pic4"].config(text="You win")
-        d["but{0}".format(0)].config(state="disabled")
-        d["but{0}".format(1)].config(state="disabled")
-    elif d["score"] <=0:
-        d["pic4"].config(text="You lose")
-        d["but{0}".format(0)].config(state="disabled")
-        d["but{0}".format(1)].config(state="disabled")
-    
-    if d["score"]<= 1000:
-        second_card=d["pic2"].cget("text")
-        
-        d["but{0}".format(0)].config(state="disabled")
-        d["but{0}".format(1)].config(state="disabled")
-        
-        root.update()
-        pause(1)
-        d["but{0}".format(0)].config(state="active")
-        d["but{0}".format(1)].config(state="active")
-        d["pic4"].config(text="Will the next card be\n higher or lower?")
-        d["pic0"].config(text=f"{second_card}")
-        d["pic2"].config(text="")
+
     
     
     
 
-def pause(amount):
-    time.sleep(amount)  
+
                  
 if __name__ == "__main__":
     prog()
