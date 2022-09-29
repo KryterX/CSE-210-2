@@ -57,4 +57,4 @@ def Setup():
     root.mainloop()
                  
 if __name__ == "__main__":
-    prog()
+    Setup()
