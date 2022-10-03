@@ -12,6 +12,7 @@ d["count"] = 0
 d["prescore"] = 0
 d["list"]=[0]*2
 d["strikes"]=0
+
 window_width=500
 win_width=int(window_width)
 win_height=int(window_width/2)
@@ -21,19 +22,24 @@ def Setup():
     root.geometry(f"{win_width}x{win_height}")  
     root.config(background="black") 
     d["Word"] = Game.SelectWord()
-    
+    print(d["Word"])
+    d["Word2"]=[" _"]*(len(d["Word"]))
     d["count"]=0
     d["lab{0}".format(0)] = Label(root,text="Hang Man",bd=20,highlightthickness=2)
     d["lab{0}".format(0)].config(highlightbackground="red",highlightcolor="red")
     d["lab{0}".format(0)].grid(row=0, column=2)   
     
-    d["lab{0}".format(1)] = Label(root,text="",bd=20,highlightthickness=2,width=7,height=3)
+    d["lab{0}".format(3)] = Label(root,text="Not:",bd=20,highlightthickness=2)
+    d["lab{0}".format(3)].config(highlightbackground="red",highlightcolor="red")
+    d["lab{0}".format(3)].grid(row=0, column=3)   
+    
+    d["lab{0}".format(1)] = Label(root,text="",bd=20,highlightthickness=2,width=9)
     d["lab{0}".format(1)].config(highlightbackground="blue",highlightcolor="blue")
     d["lab{0}".format(1)].grid(row=1, column=1)
     
-    d["lab{0}".format(1)] = Label(root,text="",bd=20,highlightthickness=2,width=7,height=3)
-    d["lab{0}".format(1)].config(highlightbackground="blue",highlightcolor="blue")
-    d["lab{0}".format(1)].grid(row=1, column=2)
+    d["lab{0}".format(2)] = Label(root,text="",bd=20,highlightthickness=2,width=7,height=3)
+    d["lab{0}".format(2)].config(highlightbackground="blue",highlightcolor="blue")
+    d["lab{0}".format(2)].grid(row=1, column=2)
     
     d["ent{0}".format(0)] = Text(root,highlightthickness=2,width=10,height=1)
     d["ent{0}".format(0)].config(highlightbackground="blue",highlightcolor="blue")

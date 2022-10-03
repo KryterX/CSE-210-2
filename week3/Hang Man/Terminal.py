@@ -1,9 +1,10 @@
-
+import Director
 
 
 
 def setup(d):
     word=d["Word"]
     for x in range(len(word)):
-        temp= d["lab1"].cget("text")
-        d["lab1"].config(text=f"{temp} _")
+        temp= d["lab2"].cget("text")
+        d["lab2"].config(text=f"{temp} _")
+    Director.Setup(d)
