@@ -1,11 +1,31 @@
+from pyray import *
+import pyray
 from constants import *
-from game.directing.director import Director
-from game.directing.scene_manager import SceneManager
+from game.services.video import VideoService
+from game.services.audio import AudioService
+from game.graphics import Graphics
 
+vs = VideoService()
+audio = AudioService()
+gp = Graphics()
 
-def main():
-    director = Director(SceneManager.VIDEO_SERVICE)
-    director.start_game()
+vs.open_window()
+audio.loadMusic()
+audio.play()
+gp.newBlock()
 
-if __name__ == "__main__":
-    main()
+while vs.running():
+    if not gp.game_over:
+        blocks = gp.getBlocks()
+        audio.setSpeed(gp.speed)
+        audio.refreshMusic()
+        vs.start_drawing()
+        vs.draw_labels(gp.labels)
+        vs.draw_block(gp.next_block)
+        vs.draw_blocks(blocks)
+        gp.moveBlock()
+    else:
+        pyray.draw_text("GAME OVER", CELL_SIZE, (MAX_Y//2)-22, 27, BLACK.to_tuple())
+    vs.stop_drawing()    
+vs.exit()
+
