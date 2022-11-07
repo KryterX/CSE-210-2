@@ -6,7 +6,7 @@ class AudioService:
     def loadMusic(self):
         pyray.init_audio_device()
         
-        self.music = pyray.load_music_stream("C:\\Users\\myste\\Documents\\CSE210\\CSE210-01\\Tetris\\game\\assets\\Korobeiniki.wav")
+        self.music = pyray.load_music_stream("../../game/assets/Korobeiniki.wav")
         #self.music = Music(self._track['main'], 2416448, True, None, None)
 
     def play(self):
